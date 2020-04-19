@@ -1,0 +1,34 @@
+{
+  "name": "unblu-simple-bot-demo",
+  "version": "1.0.0",
+  "description": "Simple example of how to integrate a bot with the Unblu collaboration server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen-api:clean": "rm -rf ./gen",
+    "gen-api:ts": "./node_modules/.bin/openapi-generator generate -i unblu_openapi_spec.yaml  -g typescript-node -o gen  --additional-properties supportsES6=true",
+    "gen-api:typedef": "tsc ./gen/model/*bot*.ts -d --emitDeclarationOnly --outDir gen/typedefs --module system",
+    "gen-api": "npm run gen-api:clean && npm run gen-api:ts && npm run gen-api:typedef"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dev.unblu.com/bitbucket/scm/demo/simple-bot-demo.git"
+  },
+  "keywords": [
+    "bot",
+    "Unblu"
+  ],
+  "author": "David Eberlein",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.0",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.1-4.1.3"
+  }
+}
