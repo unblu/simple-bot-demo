@@ -135,9 +135,8 @@ export async function deleteBot(dialogBotId) {
  * @returns {Promise<string>} the dialog token which will also be present on every dialog webhook.
  */
 export async function acceptDialogOffer(dialogOfferToken, dialogBotId) {
-    return await get('acceptDialogOffer', {
-        dialogOfferToken,
-        dialogBotId
+    return await post('acceptDialogOffer', {
+        dialogOfferToken
     })
 }
 /**
@@ -145,9 +144,8 @@ export async function acceptDialogOffer(dialogOfferToken, dialogBotId) {
  * @param {string} dialogBotId 
  */
 export async function declineDialogOffer(dialogOfferToken, dialogBotId) {
-    return await get('declineDialogOffer', {
-        dialogOfferToken,
-        dialogBotId
+    return await post('declineDialogOffer', {
+        dialogOfferToken
     })
 }
 
@@ -219,7 +217,7 @@ export async function sendDialogRatingQuestion(dialogToken, text, options) {
  * @param {string} dialogToken 
  */
 export async function dialogHandOff(dialogToken) {
-    return await get('finishDialog', {
+    return await post('finishDialog', {
         dialogToken,
         reason: EBotDialogFinishReason.HAND_OFF
     })
@@ -229,7 +227,7 @@ export async function dialogHandOff(dialogToken) {
  * @param {string} dialogToken
  */
 export async function dialogAbort(dialogToken) {
-    return await get('finishDialog', {
+    return await post('finishDialog', {
         dialogToken,
         reason: EBotDialogFinishReason.ABORTED
     })
@@ -239,7 +237,7 @@ export async function dialogAbort(dialogToken) {
  * @param {string} dialogToken
  */
 export async function dialogSolved(dialogToken) {
-    return await get('finishDialog', {
+    return await post('finishDialog', {
         dialogToken,
         reason: EBotDialogFinishReason.SOLVED
     })
